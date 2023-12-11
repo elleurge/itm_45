@@ -16,6 +16,8 @@ def material_waste(total_material, material_units, num_jobs, job_consumption):
     return material_waste
 
 def interest(principal, rate, periods):
+    principal=int(principal)
+    periods=int(periods)
     rate = float(rate/100)
     interest = principal * rate * periods
     final_value = principal + interest
@@ -66,7 +68,7 @@ while(True):
                 print("\n[SYSTEM]: Please input a number between 0 and 1.")
             else:
                 break
-        print("\Input the Expenses | E.g. 3400")
+        print("\nInput the Expenses | E.g. 3400")
         while(True):
             expenses = int(input(">> "))
             if not(expenses >= 0):
@@ -106,7 +108,7 @@ while(True):
             else:
                 break
         print("\nRemaining Materials: " + material_waste(total_material, material_units, num_jobs, job_consumption))
-   
+
     elif select == 3:
         print("\n[FUNCTION: INTEREST]")
         print("Input the Principal | E.g. 3600")
@@ -138,11 +140,11 @@ while(True):
         print("Input the Periods")
         while(True):
             periods = input(">> ")
-            if not(periods >= 0):
+            if not(periods.isdigit()):
                 print("\n[SYSTEM]: Please input a number greater than or equal to 0.")
             else:
                 break
-        print("\Final Investment Value: " + str(interest(principal, rate, periods)))
+        print("\nFinal Investment Value: " + str(interest(principal, rate, int(periods))))
     
     elif select == 4:
         print("\nYou've selected BODY MASS INDEX.")
@@ -163,13 +165,14 @@ while(True):
         height_list = height.split("'")
         bmi = body_mass_index(weight, height_list)
         print("\nBody Mass Index: " + (str(bmi)))
-        if (bmi < 18.5):
+        bmi = float(bmi)
+        if bmi < 18.5:
             print("Category: Underweight")
-        elif (bmi >= 18.5 and bmi <= 24.9):
+        elif 18.5 <= bmi <= 24.9:
             print("Category: Healthy Weight")
-        elif (bmi >= 25.0 and bmi <= 29.9):
+        elif 25.0 <= bmi <= 29.9:
             print("Category: Overweight")
-        elif (bmi > 30.0):
+        elif bmi > 30.0:
             print("Category: Obesity")
 
     print("\nInitiate program execution once more?")
